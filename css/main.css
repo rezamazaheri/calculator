@@ -1,6 +1,6 @@
 html {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html body {
@@ -10,7 +10,7 @@ html body {
 
 *:before, *:after {
   -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 .wrapper {
@@ -32,10 +32,10 @@ html body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-line-pack: stretch;
-      align-content: stretch;
+  align-content: stretch;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin-bottom: 0.5%;
 }
 
@@ -48,7 +48,7 @@ html body {
   color: black;
   height: 100px;
   -ms-flex-preferred-size: 24.5%;
-      flex-basis: 24.5%;
+  flex-basis: 24.5%;
   border: none;
   border-radius: 0;
   font-size: 40px;
@@ -78,11 +78,11 @@ html body {
 
 .double {
   -ms-flex-preferred-size: 49.7%;
-      flex-basis: 49.7%;
+  flex-basis: 49.7%;
 }
 
 .triple {
   -ms-flex-preferred-size: 74.8%;
-      flex-basis: 74.8%;
+  flex-basis: 74.8%;
 }
 /*# sourceMappingURL=main.css.map */
