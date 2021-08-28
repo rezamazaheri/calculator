@@ -4,75 +4,70 @@ let previousOperator;
 const screen = document.querySelector(".screen");
 
 let rerender = _ => {
-    screen.innerText = buffer;
+  screen.innerText = buffer;
 }
 
 let  flushOperation = intBuffer => {
-    switch(previousOperator) {
-        case "+":
-            runningTotal += intBuffer;
-            break;
-        case "-":
-            runningTotal -= intBuffer;
-            break;
-        case "×":
-            runningTotal *= intBuffer;
-            break;
-        case "÷":
-            runningTotal /= intBuffer;            
-    }
+  switch(previousOperator) {
+    case "+":
+      runningTotal += intBuffer;
+      break;
+    case "-":
+      runningTotal -= intBuffer;
+      break;
+    case "×":
+      runningTotal *= intBuffer;
+      break;
+    case "÷":
+      runningTotal /= intBuffer;            
+  }
 }
 
 let handleMath = operator => {
-    if (buffer === "0") {
-      return;
-    }
-    const intBuffer = parseInt(buffer);
-    if (runningTotal === 0) {
-      runningTotal = intBuffer;
-    } else {
-      flushOperation(intBuffer);
-    }  
-    previousOperator = operator;  
-    buffer = "0";
+  if (buffer === "0") 
+    return;
+
+  const intBuffer = parseInt(buffer);
+  if (runningTotal === 0) 
+    runningTotal = intBuffer;
+  else 
+    flushOperation(intBuffer);
+
+  previousOperator = operator;  
+  buffer = "0";
 }
   
 let handleSymbol = symbol => {
-    switch (symbol) {
-      case "C":
+  switch (symbol) {
+    case "C":
+      buffer = "0";
+      runningTotal = 0;
+      break;
+    case "=":
+      if (previousOperator === null) 
+        return;
+
+      flushOperation(parseInt(buffer));
+      previousOperator = null;
+      buffer = +runningTotal;
+      runningTotal = 0;
+      break;
+    case "←":
+      if (buffer.length === 1) 
         buffer = "0";
-        runningTotal = 0;
-        break;
-      case "=":
-        if (previousOperator === null) {
-          return;
-        }
-        flushOperation(parseInt(buffer));
-        previousOperator = null;
-        buffer = +runningTotal;
-        runningTotal = 0;
-        break;
-      case "←":
-        if (buffer.length === 1) {
-          buffer = "0";
-        } else {
-          buffer = buffer.substring(0, buffer.length - 1);
-        }
-        break;
-      case "+":
-      case "-":
-      case "×":
-      case "÷":
-        handleMath(symbol);
-    }
+      else 
+        buffer = buffer.substring(0, buffer.length - 1);
+      break;
+    case "+":
+    case "-":
+    case "×":
+    case "÷":
+      handleMath(symbol);
   }
+}
 
 let handleNumber = number => {
-    if (buffer === "0") {
-      buffer = number;
-    } else {
-      buffer += number;
-    }
+  buffer = buffer === "0" ? number : (buffer + number);
 }
 
 let buttonClick = value => {
